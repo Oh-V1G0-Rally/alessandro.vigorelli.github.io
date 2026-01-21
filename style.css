@@ -1,0 +1,384 @@
+/* =========================================
+   HMI / CONFIGURAZIONE VARIABILI
+   ========================================= */
+:root {
+    /* Colori di sistema */
+    --bg-color: #F8F8F8;
+    --text-color: #494949;
+    --line-color: #7B7B7B;
+    --font-main: 'JetBrains Mono', monospace;
+
+    /* --- PARAMETRI HOME PAGE (La tua "Ricetta") --- */
+    --home-text-width: 380px;   /* Larghezza dell'area testo centrale */
+    --home-gap: 30px;           /* Distanza (Gap) tra il testo centrale e le immagini     */   
+    --home-img-scale: 1;     /* Grandezza immagini (1 = 100%, 0.8 = 80%) */
+    --home-img-offset-y: 0px;   /* Spostamento verticale immagini (positivo = giù, negativo = su) */
+}
+
+/* RESET DI BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    /* Autoscale font intelligente */
+    font-size: clamp(14px, 1.2vw + 0.5rem, 18px);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+#navbar {
+    position: fixed;
+    top: 0;
+    /* dimensioni largehzza */
+    width: 70%;
+    max-width: 900px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-color);
+    padding: 15px 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--line-color);
+    border-left: 2px solid var(--line-color); 
+    border-right: 2px solid var(--line-color);
+    border-bottom-left-radius: 25px; /* Arrotondamento leggermente più accentuato */
+    border-bottom-right-radius: 25px;
+    
+    /* Ombra leggera per staccarla dallo sfondo */
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;           
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: font-size 0.3s;
+}
+
+.nav-link.active {
+    font-size: 1.8rem;
+    text-decoration: underline;
+}
+
+.separator {
+    color: var(--line-color);
+    font-size: 1.5rem;
+}
+
+/* SEZIONI GENERALI */
+section {
+    min-height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    position: relative; /* Importante per i contesti */
+}
+
+.content-wrapper {
+    width: 90%;
+    max-width: 1400px; /* Aumentato per dare spazio alle immagini laterali */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+/* CARD STYLE */
+.card {
+    border: 2px solid var(--line-color);
+    border-radius: 20px;
+    padding: 20px;
+    background-color: var(--bg-color);
+}
+
+/* =========================================
+   HOME STYLE - LOGICA PARAMETRICA
+   ========================================= */
+.home-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Centra tutto il blocco orizzontalmente */
+    align-items: center;     /* Centra verticalmente */
+    
+    /* Qui usiamo la variabile per decidere la distanza */
+    gap: var(--home-gap);    
+    
+    width: 100%;
+}
+
+/* BLOCCO CENTRALE TESTO */
+.center-text {
+    /* Larghezza fissa definita dalla variabile: assicura che sia sempre al centro */
+    flex: 0 0 var(--home-text-width); 
+    text-align: center;
+    z-index: 10; /* Assicura che il testo sia sopra in caso di sovrapposizioni estreme */
+}
+
+/* Evitare a capo */
+.center-text h1, .center-text h2, .center-text h3, .center-text .linkedin-link {
+    white-space: nowrap;
+}
+
+/* IMMAGINI LATERALI (Contenitore) */
+.side-img {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Fondamentale per far funzionare 'left' sotto */
+}
+
+/* --- NUOVA REGOLA: SPOSTAMENTO IMMAGINE DESTRA --- */
+/* Questa regola sposta visivamente il contenitore destro verso sinistra
+   senza che il Flexbox ricalcoli il centro. La scritta resta ferma. */
+.side-img.side-right {
+    left: -200px; /* Sposta l'immagine sinistra di 200px */
+    z-index: 1;  /* Assicura la corretta sovrapposizione se tocca il testo */
+}
+
+/* STILE IMMAGINE (Interne al contenitore) */
+.side-img img {
+    max-height: 800px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0;
+    
+    /* Stato iniziale animazione */
+    transform: translateY(var(--home-img-offset-y)) scale(var(--home-img-scale)); 
+    transition: transform 0.7s cubic-bezier(.2,.9,.3,1), opacity 0.6s;
+}
+
+/* ANIMAZIONI INGRESSO */
+.side-img.side-left img.in-view {
+    opacity: 1;
+    animation: slideInLeft 700ms ease forwards;
+}
+
+.side-img.side-right img.in-view {
+    opacity: 1;
+    animation: slideInRight 700ms ease forwards;
+}
+
+/* ANIMAZIONI USCITA */
+.side-img.side-left img.exit {
+    animation: slideOutLeft 500ms ease forwards;
+    /* Ho rimosso il margin-left: -80px che c'era qui, era un errore */
+}
+.side-img.side-right img.exit {
+    animation: slideOutRight 500ms ease forwards;
+}
+
+/* KEYFRAMES - Nota: qui usiamo le variabili per mantenere la consistenza */
+@keyframes slideInLeft {
+    from { 
+        opacity: 0; 
+        transform: translateX(-50px) translateY(var(--home-img-offset-y)) scale(calc(var(--home-img-scale) - 0.1)); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0) translateY(var(--home-img-offset-y)) scale(var(--home-img-scale)); 
+    }
+}
+
+@keyframes slideInRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(50px) translateY(var(--home-img-offset-y)) scale(calc(var(--home-img-scale) - 0.1)); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0) translateY(var(--home-img-offset-y)) scale(var(--home-img-scale)); 
+    }
+}
+
+@keyframes slideOutLeft {
+    from { opacity: 1; transform: translateX(0) translateY(var(--home-img-offset-y)) scale(var(--home-img-scale)); }
+    to   { opacity: 0; transform: translateX(-30px) translateY(var(--home-img-offset-y)) scale(var(--home-img-scale)); }
+}
+
+@keyframes slideOutRight {
+    from { opacity: 1; transform: translateX(0) translateY(var(--home-img-offset-y)) scale(var(--home-img-scale)); }
+    to   { opacity: 0; transform: translateX(30px) translateY(var(--home-img-offset-y)) scale(var(--home-img-scale)); }
+}
+
+/* --- LINKEDIN INDICATOR --- */
+.linkedin-link {
+    /* POSIZIONAMENTO */
+    position: absolute;
+    /* Calcoliamo l'altezza: 30px (fondo) + altezza scritta scroll + 20px spazio */
+    bottom: 80px; 
+    left: 50%;
+    transform: translateX(-50%); /* Centratura orizzontale perfetta */
+    z-index: 10;
+    
+    /* STILE */
+    display: inline-block;
+    font-size: 1rem;
+    color: #0077b5;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--line-color);
+    transition: color 0.3s, border-color 0.3s;
+    
+    /* Assicuriamoci che il testo non vada a capo */
+    white-space: nowrap; 
+}
+
+.linkedin-link:hover {
+    color: #000;
+    border-color: #000;
+}
+
+/* --- SCROLL DOWN INDICATOR --- */
+.scroll-indicator {
+    /* POSIZIONAMENTO */
+    position: absolute; 
+    bottom: 10px; /* Distanza dal fondo della pagina: aumenta per alzarla, diminuisci per abbassarla */
+    left: 50%;    /* La mette a metà pagina */
+    transform: translateX(-50%); /* Corregge la centratura esatta */
+    
+    /* STILE */
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 10;
+    
+    /* ANIMAZIONE RIMBALZO (Opzionale ma figa) */
+    animation: bounce 2s infinite;
+}
+
+/* Keyframes per il rimbalzo */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* =========================================
+    ABOUT ME STYLE
+   ========================================= */
+
+.about-card-top {
+    display: flex;
+    justify-content: space-between;
+}
+.about-card-top .img-part img {
+    height: 300px;
+    filter: grayscale(100%);
+}
+
+/* PROJECT STYLE */
+.project-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+    overflow: hidden;
+    margin-bottom: 12px;
+    padding: 16px;
+}
+.project-card:hover {
+    background-color: #eaeaea;
+}
+.project-card .project-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+.project-card.expanded {
+    background-color: var(--bg-color);
+    transform: scale(1.01);
+}
+.project-card.expanded .project-details {
+    max-height: 800px;
+    opacity: 1;
+}
+
+.project-img-container img {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+/* TABS */
+.tab-card .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.tab-card .tab-btn {
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line-color);
+    background: transparent;
+    cursor: pointer;
+    font-weight: 700;
+}
+.tab-card .tab-btn.active {
+    background: var(--line-color);
+    color: white;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* MAP STYLE */
+.map-container {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.world-map {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.map-marker {
+    position: absolute;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+.map-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid var(--line-color);
+    border-radius: 20px;
+    padding: 20px;
+    width: 400px;
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.hidden { display: none; }
+.city-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-bottom: 1px dashed var(--line-color);
+    padding-bottom: 5px;
+}
+.city-item img { width: 50px; }

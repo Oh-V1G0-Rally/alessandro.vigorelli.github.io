@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alessandro Vigorelli - Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-link active">Home</a>
+            <div class="separator">|</div>
+            <a href="#project" class="nav-link">Project</a>
+            <div class="separator">|</div>
+            <a href="#about" class="nav-link">About Me</a>
+            <div class="separator">|</div>
+            <a href="#explored" class="nav-link">Explored</a>
+        </div>
+    </nav>
+
+    <section id="home" class="section">
+        <div class="content-wrapper home-layout">
+            <div class="side-img side-left">
+                <img src="assets/images/me_left.png" alt="Alessandro Left"> 
+            </div>
+            
+            <div class="center-text">
+                <h1>&lt;Hello World!&gt;</h1>
+                <h2>&lt;It's Alessandro Vigorelli&gt;</h2>
+                <h3>&lt;An engineering student&gt;</h3>
+                <a href="#" class="linkedin-link">Linkedin: Alessandro Vigorelli_</a>
+                <br><br>
+                <div class="scroll-indicator">Scroll down &darr;</div>
+            </div>
+
+            <div class="side-img side-right">
+                <img src="assets/images/me_right.png" alt="Alessandro Right">
+            </div>
+        </div>
+    </section>
+
+    <section id="project" class="section">
+        <div class="content-wrapper">
+            <!-- Project cards: collapsed by default, open on click -->
+            <div id="proj1" class="card project-card" onclick="openProject('proj1')">
+                <h3>Mobile App - Response Visualizer</h3>
+                <div class="project-details">
+                    <p>Description Description Description...</p>
+                    <p><strong>Attachment:</strong> <a href="#">project1.pdf</a></p>
+                </div>
+            </div>
+
+            <div id="proj2" class="card project-card" onclick="openProject('proj2')">
+                <h3>ABB Robotics - Robot Studio</h3>
+                <div class="project-details">
+                    <p>Description Description Description...</p>
+                    <p><strong>Attachment:</strong> <a href="#">project2.pdf</a></p>
+                    <div class="project-img-container">
+                        <img src="assets/images/robot-arm.jpg" alt="Robot Arm">
+                    </div>
+                </div>
+            </div>
+
+            <div id="proj3" class="card project-card" onclick="openProject('proj3')">
+                <h3>Reaction Time - Pupil Core</h3>
+                <div class="project-details">
+                    <p>Description Description Description...</p>
+                    <p><strong>Attachment:</strong> <a href="#">project3.pdf</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="content-wrapper">
+            
+            <div class="card about-card-top">
+                <div class="text-part">
+                    <h3>About ME:</h3>
+                    <p>Breve descrizione di esempio: appassionato di ingegneria, sviluppo progetti meccatronici e soluzioni embedded con un occhio al design e alla sostenibilità.</p>
+                </div>
+                <div class="img-part">
+                    <img src="assets/images/me_left.png" alt="Me">
+                </div>
+            </div>
+
+            <!-- Tabbed card: Experiences / Education -->
+            <div class="card tab-card">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="work" onclick="openTab(event)">Work Experiences</button>
+                    <button class="tab-btn" data-tab="edu" onclick="openTab(event)">Education</button>
+                </div>
+                <div class="tab-contents">
+                    <div id="work" class="tab-content active">
+                        <ul>
+                            <li><strong>JOB1</strong>, from x to y, description</li>
+                            <li><strong>JOB2</strong>, from x to y, description</li>
+                        </ul>
+                    </div>
+                    <div id="edu" class="tab-content">
+                        <ul>
+                            <li><strong>Master Degree</strong>, from x to y, description</li>
+                            <li><strong>Bachelor Degree</strong>, from x to y, description</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="explored" class="section">
+        <div class="content-wrapper">
+            <div class="card map-container">
+                <img src="assets/images/world_map.jpg" class="world-map" alt="World Map">
+                
+                <div class="map-marker" style="top: 70%; left: 52%;" onclick="openMapPopup('italy')">📍</div>
+                
+                <div id="italy-popup" class="map-popup hidden">
+                    <h3>ITALY:</h3>
+                    <div class="city-item">
+                        <div>
+                            <strong>• Milan:</strong><br>Descrizione...
+                        </div>
+                        <img src="assets/images/duomo.png" alt="Milan">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
