@@ -280,7 +280,7 @@ section {
     justify-content: space-between;
 }
 .about-card-top .img-part img {
-    height: 300px;
+    height: 800px;
     filter: grayscale(100%);
 }
 
@@ -310,10 +310,47 @@ section {
     opacity: 1;
 }
 
+/* Project details: testo a sinistra, immagine a destra */
+.project-details {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-top: 8px;
+}
+
+/* testo occupa lo spazio disponibile */
+.project-text {
+    flex: 1 1 auto;
+}
+
+/* larghezza immagine controllata da variabile; l'immagine si scala automaticamente al contenitore */
+.project-img-container {
+    --proj-img-width: 600px; /* puoi cambiare il valore per adattarlo */
+    flex: 0 0 var(--proj-img-width);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* immagine si adatta al container */
 .project-img-container img {
-    max-width: 100%;
-    margin-top: 10px;
-    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+}
+
+/* comportamento responsive: su schermi piccoli impila verticalmente (immagine sotto il testo) */
+@media (max-width: 700px) {
+    .project-details {
+        flex-direction: column;
+    }
+    .project-img-container {
+        width: 100%;
+        flex: 0 0 auto;
+    }
 }
 
 /* TABS */

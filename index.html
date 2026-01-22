@@ -52,18 +52,40 @@
             <div id="proj1" class="card project-card" onclick="openProject('proj1')">
                 <h3>Mobile App - Response Visualizer</h3>
                 <div class="project-details">
-                    <p>Description Description Description...</p>
-                    <p><strong>Attachment:</strong> <a href="#">project1.pdf</a></p>
+                    <div class="project-text">
+                        <p>This project focuses on the development and enhancement of a smartphone application designed to serve as an interactive learning tool for analyzing linear systems modeled as transfer functions.</p>
+                        <p>Developed using the Flutter framework, the app aims to modernize control education by allowing students to visualize complex concepts directly on their mobile devices.</p>
+                        <p>Key features of the app include:</p>    
+                        <ul>
+                            <li><strong>- Interactive plotting:</strong> Step response, pole–zero maps, Bode and Nyquist plots with pan/zoom controls;</li>
+                            <li><strong>- Real-time parameter tuning:</strong> Sliders to modify system coefficients and immediately see effects on time/frequency responses;</li>
+                            <li><strong>- Flexible system input:</strong> Predefined 1st/2nd order templates plus custom transfer functions up to 5th order;</li>
+                            <li><strong>- Comparison mode:</strong> Overlay two transfer functions to compare responses and pole/zero placements;</li>
+                            <li><strong>- Export & share:</strong> Save plots as images and export system parameters for reports.</li>
+                        </ul>
+                        <p><strong>Attachment:</strong> <a href="assets/docs/Response_visualizer/App_ECC_2026.pdf">App_ECC_2026.pdf</a></p>
+                    </div>
+                    <div class="project-img-container">
+                        <img src="assets/images/ResponseVisualizerFeatures.png" alt="Response Visualizer">
+                    </div>
                 </div>
             </div>
 
             <div id="proj2" class="card project-card" onclick="openProject('proj2')">
-                <h3>ABB Robotics - Robot Studio</h3>
+                <h3>Robotic Cell Simulation & Programming in ABB RobotStudio</h3>
                 <div class="project-details">
-                    <p>Description Description Description...</p>
-                    <p><strong>Attachment:</strong> <a href="#">project2.pdf</a></p>
+                    <div class="project-text">
+                        <p>Designed and simulated an automated manufacturing cell using ABB RobotStudio</p>
+                        <p>Key achievements include:</p>
+                        <ul>
+                            <li><strong>- RAPID Programming:</strong> Developed the complete control logic, managing digital signals to coordinate robot movements with conveyor belts and station logic;</li>
+                            <li><strong>- Collision Avoidance:</strong> I implemented specific logic to manage a "shared zone," using semaphores and wait signals to prevent interference between the two arms during the assembly process;</li>
+                            <li><strong>- Energy Analysis:</strong> Study and analysis of the characteristic parameters of the processing phase, evaluating energy consumption, effort, and improving the layout aiming for an improvement in efficiency;</li>
+                        </ul>
+                        <p><strong>Attachment:</strong> <a href="assets/docs/IR_ABB/IR_presentazione_CUT.pdf">RobotStudio_Presentation.pdf</a></p>
+                    </div>
                     <div class="project-img-container">
-                        <img src="assets/images/robot-arm.jpg" alt="Robot Arm">
+                        <img src="assets/images/LY-linea.mp4.png" alt="ABB LY">
                     </div>
                 </div>
             </div>
@@ -71,8 +93,19 @@
             <div id="proj3" class="card project-card" onclick="openProject('proj3')">
                 <h3>Reaction Time - Pupil Core</h3>
                 <div class="project-details">
-                    <p>Description Description Description...</p>
-                    <p><strong>Attachment:</strong> <a href="#">project3.pdf</a></p>
+                    <div class="project-text">
+                        <p>The objective of this study is to determine human reaction times by comparing
+                             the results obtained through the Pupil Core system with those measured using
+                              the High-Speed camera, which serves as the reference system. The aim is 
+                              to quantify the deviation between the two methods and assess the reliability
+                               of the Pupil Core algorithm. This study highlights the difficulties in 
+                               achieving optimal reaction time measurements.</p>
+                        <p><strong>Attachment:</strong> <a href="assets/docs/Misure/Report_Gruppo_0_Finale.pdf">Final_Report.pdf</a></p>
+                    </div>
+                    <!-- se non c'è immagine, il container può rimanere vuoto o essere rimosso -->
+                    <div class="project-img-container">
+                        <img src="assets/images/Setup.png" alt="Misure Setup">
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,7 +117,33 @@
             <div class="card about-card-top">
                 <div class="text-part">
                     <h3>About ME:</h3>
-                    <p>Breve descrizione di esempio: appassionato di ingegneria, sviluppo progetti meccatronici e soluzioni embedded con un occhio al design e alla sostenibilità.</p>
+                    <p><strong>ENG</strong></p>
+                    <p>I am a student of Automation Engineering with a strong inclination toward a deep understanding 
+                    of complex systems and their translation into concrete solutions. My main interest lies at the 
+                    intersection of mathematical modeling, control systems, and software development—fields I approach 
+                    with an analytical mindset, always oriented toward real-world applications.</p>
+
+                    <p>I am a rational, curious, and well-organized person, with a strong attention to the practical 
+                    aspects of everyday life (work, opportunities, travel, and financial management). I often seek 
+                    efficient solutions with a solid value-for-money ratio, both in technology and in personal choices.</p>
+
+                    <p>I communicate in a direct manner, preferring a clear, honest, concise, and human style, 
+                    without unnecessary wording.</p>
+                    <p></p>
+                    <p><strong>ITA</strong></p>
+                    <p>Sono uno studente di Ingegneria dell’Automazione con una forte inclinazione
+                       verso la comprensione profonda dei sistemi complessi e la loro traduzione in 
+                       soluzioni concrete. Il mio interesse principale è il punto di incontro tra 
+                       modellazione matematica, controllo dei sistemi e sviluppo software, ambiti 
+                       che affronto sempre con un approccio analitico ma orientato all’applicazione 
+                       reale.</p>
+                    <p>Sono una persona razionale, curiosa e organizzata, ma anche attenta agli 
+                       aspetti concreti della vita quotidiana (lavoro, opportunità, viaggi, gestione
+                        economica). Cerco spesso soluzioni efficienti e con un buon rapporto 
+                        qualità-prezzo, sia nella tecnologia sia nelle scelte personali.</p>
+                    <p>Comunico in modo diretto, preferendo uno stile chiaro, sincero, sintetico e umano, 
+                        senza giri di parole inutili.</p>
+
                 </div>
                 <div class="img-part">
                     <img src="assets/images/me_left.png" alt="Me">
@@ -100,14 +159,23 @@
                 <div class="tab-contents">
                     <div id="work" class="tab-content active">
                         <ul>
-                            <li><strong>JOB1</strong>, from x to y, description</li>
-                            <li><strong>JOB2</strong>, from x to y, description</li>
+                            <li><strong>IT Office Employee</strong>,from 01/09/2020 to 31/08/2021, First full-time work experience at CEMBRE SPA Undertaken after graduating from high school and completed to continue his studies at the University of Brescia.
+                                        During this time, I managed and completed projects and tasks both individually and as a team. I have
+                                        developed a strong determination, essential to continually put myself out there, both for my training
+                                        professional than for personal growth.</li>
+                            <li><strong>Warehouseman</strong>, from 01/05/2022 to 31/08/2022, seasonal job</li>
+                            <li><strong>Sales Assistant</strong>, from 01/10/2022 to 22/07/2023, in DECATHLON</li>
+                            <li><strong>Weekend worker in a hypermarket</strong>, from 24/03/2025 to 31/12/2025, role in the fruit and vegetable department of a hypermarket</li>
+                            <li><strong>And other little jobs...</strong></li>
                         </ul>
                     </div>
                     <div id="edu" class="tab-content">
                         <ul>
-                            <li><strong>Master Degree</strong>, from x to y, description</li>
-                            <li><strong>Bachelor Degree</strong>, from x to y, description</li>
+                            <li><strong>Diploma as technician </strong>, 2019/2020 at the technical industrial institute I.I.S. Benedetto Castelli vote 96/100 </li>
+                            <li><strong>Erasmus - Double Degree</strong>, from 05/02/2024 to 06/07/2024, period abroad to hold a double title. I passed 4 out of 5 exams scheduled, but without obtaining my final title.</li>
+                            <li><strong>Bachelor Degree</strong>, from 13/09/2021 to 15/10/2024, vote 99/110</li>
+                            <li><strong>Blended Intensive Program - BIP</strong>, from 19/07/2025 to 27/07/2025, </li>
+                            <li><strong>Master Degree</strong>, from 16/09/2024 to Present</li>
                         </ul>
                     </div>
                 </div>
