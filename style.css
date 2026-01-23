@@ -378,48 +378,82 @@ section {
     display: block;
 }
 
+/* Miglioramento spaziatura liste (Esperienza e Formazione) */
+.tab-content ul {
+    padding-left: 25px; /* Sposta la lista verso destra (crea il gap laterale) */
+    margin-top: 15px;   /* Aggiunge spazio tra i bottoni e l'inizio della lista */
+}
+
+.tab-content li {
+    margin-bottom: 15px; /* Aggiunge spazio tra un punto e l'altro per non averli appiccicati */
+    line-height: 1.6;    /* Migliora la leggibilità del testo su più righe */
+}
+
+
 /* MAP STYLE */
 .map-container {
     position: relative;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Rimuoviamo display flex/justify/align perché Leaflet gestisce il layout internamente */
+    padding: 0; /* Rimuoviamo padding della card per far toccare la mappa ai bordi */
+    overflow: hidden; /* Importante per i bordi arrotondati */
+    height: 70vh;     /* Altezza della mappa */
+    min-height: 500px;
 }
-.world-map {
+
+#map {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    z-index: 1; /* Basso livello per non coprire la navbar */
 }
-.map-marker {
-    position: absolute;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text-color);
+
+/* Stile personalizzato per i Popup della mappa */
+.leaflet-popup-content-wrapper {
+    border-radius: 15px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    padding: 0;
+    overflow: hidden;
 }
-.map-popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border: 2px solid var(--line-color);
-    border-radius: 20px;
-    padding: 20px;
-    width: 400px;
-    z-index: 10;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+.leaflet-popup-content {
+    margin: 15px;
+    width: 280px !important; /* Larghezza fissa per il popup */
 }
-.hidden { display: none; }
-.city-item {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    border-bottom: 1px dashed var(--line-color);
+
+/* Titolo Nazione nel popup */
+.popup-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--line-color);
     padding-bottom: 5px;
 }
-.city-item img { width: 50px; }
 
+/* Singola città nella lista */
+.city-entry {
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+
+.city-entry:last-child {
+    border-bottom: none;
+}
+
+.city-entry strong {
+    display: block;
+    color: #000;
+    margin-bottom: 3px;
+}
+
+.city-entry img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+}
 /* =========================================
    MEDIA QUERIES (PER SMARTPHONE/TABLET)
    ========================================= */
@@ -490,8 +524,18 @@ section {
 
     /* --- MAP POPUP --- */
     .map-popup {
-        width: 90%; /* Il popup occupa il 90% dello schermo, non 400px fissi */
+        width: 80%; /* Il popup occupa il 90% dello schermo, non 400px fissi */
         padding: 15px;
+    }
+
+    /* --- MAP FIX MOBILE --- */
+    .map-container {
+        height: 400px; /* Altezza fissa più contenuta invece di 70vh */
+        min-height: auto;
+    }
+    /* Lasciamo un po' di margine ai lati per permettere il grip del dito */
+    #explored .content-wrapper {
+        width: 90%; 
     }
     
     /* --- GENERALE --- */

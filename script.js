@@ -61,37 +61,114 @@ function openProject(id) {
     }
 }
 
-// Funzione semplice per aprire i popup della mappa
-function openMapPopup(countryId) {
-    // Chiudi tutti gli altri prima
-    document.querySelectorAll('.map-popup').forEach(el => el.classList.add('hidden'));
-    
-    // Apri quello specifico
-    const popup = document.getElementById(countryId + '-popup');
-    if(popup) {
-        popup.classList.remove('hidden');
-    }
-}
-
 // Tabs (About)
+
 function openTab(event) {
+
     const btn = event.currentTarget;
+
     const tab = btn.getAttribute('data-tab');
+
     // toggle active on buttons
+
     document.querySelectorAll('.tab-card .tab-btn').forEach(b => b.classList.remove('active'));
+
     btn.classList.add('active');
+
     // show content
+
     document.querySelectorAll('.tab-card .tab-content').forEach(c => c.classList.remove('active'));
+
     const content = document.getElementById(tab);
+
     if (content) content.classList.add('active');
+
 }
 
-// Chiudi i popup della mappa se clicchi fuori dalla finestra popup
-document.addEventListener('click', function(event) {
-    // Se il click è dentro la popup o sul marker, non chiudere
-    if (event.target.closest('.map-popup') || event.target.closest('.map-marker')) {
-        return;
+
+
+// =========================================
+// MAPPA INTERATTIVA (Leaflet.js)
+// =========================================
+
+// 1. Dati dei luoghi visitati (Modifica qui per aggiungere posti!)
+const visitedPlaces = [
+    {
+        country: "Italy",
+        coords: [41.8719, 12.5674], // Latitudine, Longitudine (Centro Italia)
+        cities: [
+            {
+                name: "Milan",
+                desc: "Home of innovation and the beautiful Duomo.",
+                img: "assets/images/duomo.png" // Assicurati che l'immagine esista!
+            },
+            {
+                name: "Venice",
+                desc: "Lost in the canals and history.",
+                img: "https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=400" // Esempio link esterno
+            }
+        ]
+    },
+    {
+        country: "Spain",
+        coords: [40.4168, -3.7038], // Madrid
+        cities: [
+            {
+                name: "Barcelona",
+                desc: "Architecture by Gaudí and seaside vibes.",
+                img: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=400"
+            }
+        ]
     }
-    // altrimenti chiudi tutte le popup
-    document.querySelectorAll('.map-popup').forEach(el => el.classList.add('hidden'));
+    // Copia e incolla un blocco {...} per aggiungere altri paesi
+];
+
+// 2. Inizializzazione Mappa
+// Coordinate [lat, lng], Zoom level (4 = vista Europa/Mondo)
+const map = L.map('map', {
+    scrollWheelZoom: false,
+    dragging: !L.Browser.mobile, 
+    tap: !L.Browser.mobile
+}).setView([48.0, 10.0], 4);
+
+// 3. Aggiunta del "Tile Layer" (Lo stile grafico della mappa)
+// Usiamo CartoDB Positron per un look pulito e minimalista (bianco/grigio)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+}).addTo(map);
+
+// 4. Generazione dei Marker
+visitedPlaces.forEach(place => {
+    // Creiamo l'HTML interno del popup dinamicamente
+    let citiesHtml = '';
+    
+    place.cities.forEach(city => {
+        citiesHtml += `
+            <div class="city-entry">
+                <strong>• ${city.name}</strong>
+                <span>${city.desc}</span>
+                <img src="${city.img}" alt="${city.name}">
+            </div>
+        `;
+    });
+
+    const popupContent = `
+        <div class="popup-container">
+            <div class="popup-title">${place.country} 🇮🇹</div>
+            ${citiesHtml}
+        </div>
+    `;
+
+    // Aggiungi marker alla mappa
+    L.marker(place.coords)
+        .addTo(map)
+        .bindPopup(popupContent);
+});
+
+// Fix: A volte la mappa non renderizza bene se caricata in una pagina nascosta/scrollata.
+// Forziamo un ricalcolo delle dimensioni quando la finestra cambia dimensione.
+window.addEventListener('resize', () => {
+    map.invalidateSize();
 });
