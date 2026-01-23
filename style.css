@@ -419,3 +419,83 @@ section {
     padding-bottom: 5px;
 }
 .city-item img { width: 50px; }
+
+/* =========================================
+   MEDIA QUERIES (PER SMARTPHONE/TABLET)
+   ========================================= */
+
+@media (max-width: 900px) {
+    
+    /* --- NAVBAR --- */
+    #navbar {
+        width: 95%; /* Allarghiamo la navbar quasi a tutto schermo */
+        padding: 10px 10px;
+        border-radius: 15px; /* Riduciamo raggio bordo */
+    }
+    .nav-container {
+        gap: 10px; /* Meno spazio tra le voci */
+    }
+    .nav-link {
+        font-size: 0.9rem; /* Testo più piccolo */
+    }
+    .nav-link.active {
+        font-size: 1.1rem;
+    }
+    .separator {
+        font-size: 1rem; /* Separatore più discreto */
+    }
+
+    /* --- HOME SECTION --- */
+    /* Impiliamo tutto in colonna invece che in riga */
+    .home-layout {
+        flex-direction: column; 
+        gap: 40px;
+    }
+
+    /* Gestione Immagini Laterali su Mobile */
+    /* Le tue immagini laterali sono molto grandi e hanno posizionamenti complessi.
+       Su mobile conviene nasconderle per pulizia, OPPURE mostrarne solo una in alto */
+    .side-img {
+        display: none; /* Nascondiamo le immagini laterali per dare priorità al testo */
+    }
+    
+    /* Aggiustiamo il testo centrale */
+    .center-text {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 0 20px;
+    }
+    .center-text h1 { font-size: 1.8rem; }
+    .center-text h2 { font-size: 1.2rem; }
+    .center-text h3 { font-size: 1rem; }
+
+    /* Spostiamo un po' su il contenuto perché non abbiamo le immagini */
+    section#home {
+        align-items: center; /* Centra verticalmente */
+        padding-top: 150px; /* Spazio per la navbar */
+    }
+
+    /* --- ABOUT SECTION --- */
+    .about-card-top {
+        flex-direction: column; /* Testo sopra, immagine sotto */
+        gap: 30px;
+    }
+    .about-card-top .img-part img {
+        height: auto; /* Altezza automatica */
+        width: 100%;  /* Larghezza piena */
+        max-height: 400px; /* Limite altezza */
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* --- MAP POPUP --- */
+    .map-popup {
+        width: 90%; /* Il popup occupa il 90% dello schermo, non 400px fissi */
+        padding: 15px;
+    }
+    
+    /* --- GENERALE --- */
+    .content-wrapper {
+        width: 95%; /* Usiamo più spazio laterale */
+    }
+}
