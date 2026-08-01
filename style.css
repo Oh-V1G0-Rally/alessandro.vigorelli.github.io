@@ -754,6 +754,10 @@ h3 {
     font-size: 0.62rem;
 }
 
+.featured-project-repository {
+    margin-top: 24px;
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -864,6 +868,35 @@ h3 {
 
 .text-link:hover::after {
     width: 28px;
+}
+
+.project-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.project-demo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 8px 16px;
+    border: 1px solid var(--navy-900);
+    border-radius: 999px;
+    background: var(--navy-900);
+    color: var(--white);
+    font-size: 0.84rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.project-demo-button:hover {
+    transform: translateY(-2px);
+    background: var(--navy-800);
 }
 
 .capabilities-section {

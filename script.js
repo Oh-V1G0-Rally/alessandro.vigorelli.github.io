@@ -47,6 +47,7 @@ const translations = {
         pupilText:
             "Experimental comparison between a Pupil Core eye-tracking system and a high-speed camera reference to quantify reaction-time measurement error.",
         openProjectPdf: "Open project PDF",
+        tryResponseVisualizer: "Try it",
         capEyebrow: "Capabilities",
         capTitle: "Across the whole control stack.",
         capOneTitle: "Control & modelling",
@@ -191,6 +192,7 @@ const translations = {
         pupilText:
             "Confronto sperimentale tra un sistema di eye tracking Pupil Core e una telecamera high-speed di riferimento per quantificare l'errore nella misura del tempo di reazione.",
         openProjectPdf: "Apri il PDF del progetto",
+        tryResponseVisualizer: "Provalo",
         capEyebrow: "Competenze",
         capTitle: "Lungo tutto lo stack di controllo.",
         capOneTitle: "Controllo e modellazione",
@@ -741,7 +743,11 @@ const sectionObserver = new IntersectionObserver(
 observedSections.forEach((section) => sectionObserver.observe(section));
 
 const careerTimeline = document.getElementById("career-timeline");
-const careerRows = document.querySelectorAll(".career-row");
+const careerRows = careerTimeline ? Array.from(careerTimeline.querySelectorAll(".career-row")) : [];
+
+if (careerTimeline) {
+    careerTimeline.append(...careerRows.reverse());
+}
 
 if (careerTimeline && "IntersectionObserver" in window) {
     document.body.classList.add("timeline-ready");
