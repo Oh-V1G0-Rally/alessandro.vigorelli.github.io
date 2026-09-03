@@ -34,6 +34,7 @@ const translations = {
         omniMetricOne: "lateral RMSE, LIN-05 vs MPC-06",
         omniMetricTwo: "encoder estimation rates validated",
         omniMetricThree: "high-level controllers compared",
+        openMasterThesis: "Open master's thesis",
         responseType: "Mobile app / Control education",
         responseTitle: "Response Visualizer",
         responseText:
@@ -179,6 +180,7 @@ const translations = {
         omniMetricOne: "RMSE laterale, LIN-05 rispetto a MPC-06",
         omniMetricTwo: "frequenze di stima encoder validate",
         omniMetricThree: "controllori di alto livello confrontati",
+        openMasterThesis: "Apri la tesi magistrale",
         responseType: "App mobile / Didattica del controllo",
         responseTitle: "Response Visualizer",
         responseText:
